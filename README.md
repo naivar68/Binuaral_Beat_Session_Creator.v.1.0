@@ -1,52 +1,88 @@
 # Binaural Beat Generator and Mixer
 
 ## Overview
-This project is a Python-based application that generates binaural beats and mixes them with a video file. The application uses `ffmpeg` for video and audio processing and requires user input to configure the frequency transitions and volume levels for the binaural beats.
 
-## Prerequisites
+This project provides a tool to generate binaural beats and mix them with a video file. It offers both a Command-Line Interface (CLI) and a web-based interface using Streamlit.
+
+## Requirements
+
+Ensure you have the following installed:
 - Python 3.x
-- `ffmpeg` installed and added to your system's PATH
-- Required Python packages listed in `requirements.txt`
+- FFMPEG
+- Required Python packages (listed in `requirements.txt`)
 
 ## Installation
-1. Clone the repository:
-    ```sh
-    git clone <repository-url>
-    cd <repository-directory>
-    ```
 
-2. Install the required Python packages:
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Install the required Python packages:
     ```sh
     pip install -r requirements.txt
     ```
 
-3. Ensure `ffmpeg` is installed and added to your system's PATH. You can check the installation by running:
-    ```sh
-    ffmpeg -version
-    ```
+## Pre-Run Instructions
 
+Before running the program, you need to prepare your video file as follows:
+
+1. **Create or download a video** that you intend to use with the binaural beats.
+2. **Edit the video** using a video editing tool such as `kdenlive` on Linux or a Windows equivalent to achieve the desired length and content.
+3. **Take note of the EXACT time** of the video's duration after editing.
+4. **Convert this duration to milliseconds** (e.g., a video of 2 minutes and 30 seconds has a duration of 150,000 milliseconds).
+5. To calculate the number of milliseconds in 30 minutes:
+
+    Convert minutes to seconds:
+    30 minutes×60 seconds/minute=1800 seconds
+    30minutes×60seconds/minute=1800seconds
+    When inputting the value into the program **omit** the commas
+
+5. When running the program, you must **input this value as the project duration**. Failure to follow these steps will result in errors during execution.
+6. ** Ensure the video file is in MP4 format**.
 ## Usage
-1. Place the video file (`.mp4` format) in the same directory as the program.
 
-2. Run the main script:
+### Command-Line Interface (CLI)
+
+1. Open a terminal and navigate to the project directory.
+2. Run the program:
     ```sh
     python main.py
     ```
+3. Select the CLI mode by entering `1`.
+4. Follow the prompts to generate binaural beats and mix them with the video file.
 
-3. Follow the on-screen prompts to:
-    - Enter the number of frequency transitions.
-    - Enter the start and end frequencies for each transition.
-    - Enter the desired name for the output file (including the `.mp4` extension).
-    - Enter the volume level for the binaural beats (0.0 to 1.0).
+### Web-Based Interface (Streamlit)
 
-4. The program will generate a `.wav` file with the binaural beats and then mix it with the video file.
+1. Open a terminal and navigate to the project directory.
+2. Run the program:
+    ```sh
+    python main.py
+    ```
+3. Select the Streamlit mode by entering `2`.
+4. A web browser will open with the Streamlit interface.
+5. Configure the parameters in the sidebar:
+    - Sample Rate (Hz)
+    - Duration (milliseconds) (Ensure this matches the video duration)
+    - Number of Frequency Transitions
+    - Frequencies for each transition
+    - Binaural Volume
+    - Upload an MP4 video file
+    - Output File Name
+6. Click "Generate Binaural Beats" to create the binaural beats audio file.
+7. Click "Mix with Video" to mix the generated binaural beats with the uploaded video file.
 
-## Project Structure
-- `main.py`: The main script that orchestrates the generation and mixing of binaural beats.
-- `variables.py`: Contains the `Variables` class for handling user input and validation.
-- `BinauralBeatGenerator.py`: Contains functions for generating binaural beats and transitions.
-- `BinauralBeatMixer.py`: Contains the `BinauralBeatMixer` class for mixing the generated binaural beats with the video file.
+## Files
 
-## Example
-```sh
-python main.py
+- `main.py`: Entry point for the application. Allows the user to choose between CLI and Streamlit interfaces.
+- `streamlit_app.py`: Contains the Streamlit web interface logic.
+- `BinauralBeatGenerator.py`: Functions to generate binaural beats.
+- `BinauralBeatMixer.py`: Class to mix binaural beats with a video file.
+- `variables.py`: Contains the `Variables` class to manage configuration and user inputs.
+- `requirements.txt`: Lists the required Python packages.
+
+## Troubleshooting
+
+- If you encounter issues with FFMPEG, ensure it is correctly installed and accessible from the command line.
+- Ensure all required Python packages are installed by running `pip install -r requirements.txt`.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
